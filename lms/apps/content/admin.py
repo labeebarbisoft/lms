@@ -7,4 +7,8 @@ admin.site.register(Course)
 admin.site.register(Section)
 admin.site.register(SubSection)
 admin.site.register(Unit)
-admin.site.register(Component)
+
+
+@admin.register(Component)
+class Component(admin.ModelAdmin):
+    list_display = ("name", "unit")

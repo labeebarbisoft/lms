@@ -13,7 +13,7 @@ class Profile(models.Model):
     role = models.CharField(max_length=20, choices=ROLE_TYPES, blank=False)
 
     def __str__(self):
-        return f"{self.user.username} {self.role}"
+        return f"{self.user.username}"
 
 
 @receiver(post_save, sender=User)
@@ -32,7 +32,7 @@ class Course(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.name} by {self.author}"
+        return f"{self.name}"
 
 
 class Section(models.Model):
@@ -45,7 +45,7 @@ class Section(models.Model):
 
 class SubSection(models.Model):
     name = models.CharField(max_length=100)
-    Section = models.ForeignKey(Section, on_delete=models.CASCADE)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name}"

@@ -1,0 +1,296 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+        "username": "Tom",
+        "is_staff": true
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "username": "Jerry",
+            "is_staff": true
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "username": "Spike",
+            "is_staff": true
+        }
+    },
+
+
+
+
+    {
+        "model": "content.course",
+        "pk": 1,
+        "fields": {
+            "name": "Tom's Troublesome Tricks.",
+            "author": 2
+        }
+    },
+    {
+        "model": "content.section",
+        "pk": 1,
+        "fields": {
+            "name": "Jerry's Escapades.",
+            "course": 1
+        }
+    },
+    {
+        "model": "content.subsection",
+        "pk": 1,
+        "fields": {
+            "name": "Cheese Quests.",
+            "section": 1
+        }
+    },
+    {
+        "model": "content.unit",
+        "pk": 1,
+        "fields": {
+          "name": "Chasing Cheese",
+          "sub_section": 1
+        }
+    },
+    {
+        "model": "content.component",
+        "pk": 1,
+        "fields": {
+          "name": "Mouse Trap",
+          "content": "Tom's latest attempt to catch Jerry.",
+          "unit": 1
+        }
+    },
+
+
+
+
+    {
+        "model": "content.course",
+        "pk": 2,
+        "fields": {
+          "name": "Jerry's Comedy School",
+          "author": 3
+        }
+    },
+    {
+        "model": "content.section",
+        "pk": 2,
+        "fields": {
+          "name": "Slapstick Humor",
+          "course": 2
+        }
+    },
+    {
+        "model": "content.section",
+        "pk": 3,
+        "fields": {
+          "name": "Visual Gags",
+          "course": 2
+        }
+    },
+    {
+        "model": "content.subsection",
+        "pk": 2,
+        "fields": {
+          "name": "Slips and Falls",
+          "section": 2
+        }
+    },
+    {
+        "model": "content.subsection",
+        "pk": 3,
+        "fields": {
+          "name": "Pies in the Face",
+          "section": 3
+        }
+    },
+    {
+        "model": "content.unit",
+        "pk": 2,
+        "fields": {
+          "name": "Slapstick Techniques",
+          "sub_section": 2
+        }
+    },
+    {
+        "model": "content.unit",
+        "pk": 3,
+        "fields": {
+          "name": "Timing and Delivery",
+          "sub_section": 2
+        }
+    },
+    {
+        "model": "content.unit",
+        "pk": 4,
+        "fields": {
+          "name": "Character Design",
+          "sub_section": 3
+        }
+    },
+    {
+        "model": "content.unit",
+        "pk": 5,
+        "fields": {
+          "name": "Storyboarding",
+          "sub_section": 3
+        }
+    },
+    {
+        "model": "content.component",
+        "pk": 2,
+        "fields": {
+          "name": "Slapstick Props",
+          "content": "Various props used in slapstick comedy.",
+          "unit": 2
+        }
+    },
+    {
+        "model": "content.component",
+        "pk": 3,
+        "fields": {
+          "name": "Pie Recipes",
+          "content": "Recipes for making comedic pies.",
+          "unit": 3
+        }
+    },
+    {
+        "model": "content.component",
+        "pk": 4,
+        "fields": {
+          "name": "Character Sketching Tools",
+          "content": "Tools for creating character sketches.",
+          "unit": 4
+        }
+    },
+    {
+        "model": "content.component",
+        "pk": 5,
+        "fields": {
+          "name": "Storyboard Templates",
+          "content": "Templates for creating storyboards.",
+          "unit": 5
+        }
+    }, 
+    
+    
+
+
+    {
+        "model": "content.course",
+        "pk": 3,
+        "fields": {
+            "name": "Jerry's Comedy School",
+            "author": 3
+        }
+    },
+    {
+        "model": "content.section",
+        "pk": 4,
+        "fields": {
+            "name": "Slapstick Humor",
+            "course": 3
+        }
+    },
+    {
+        "model": "content.section",
+        "pk": 5,
+        "fields": {
+            "name": "Visual Gags",
+            "course": 3
+        }
+    },
+    {
+        "model": "content.subsection",
+        "pk": 4,
+        "fields": {
+            "name": "Slips and Falls",
+            "section": 4
+        }
+    },
+    {
+        "model": "content.subsection",
+        "pk": 5,
+        "fields": {
+            "name": "Pies in the Face",
+            "section": 5
+        }
+    },
+    {
+        "model": "content.unit",
+        "pk": 6,
+        "fields": {
+            "name": "Slapstick Techniques",
+            "sub_section": 4
+        }
+    },
+    {
+        "model": "content.unit",
+        "pk": 7,
+        "fields": {
+            "name": "Timing and Delivery",
+            "sub_section": 4
+        }
+    },
+    {
+        "model": "content.unit",
+        "pk": 8,
+        "fields": {
+            "name": "Character Design",
+            "sub_section": 5
+        }
+    },
+    {
+        "model": "content.unit",
+        "pk": 9,
+        "fields": {
+            "name": "Storyboarding",
+            "sub_section": 5
+        }
+    },
+    {
+        "model": "content.component",
+        "pk": 6,
+        "fields": {
+            "name": "Slapstick Props",
+            "content": "Various props used in slapstick comedy.",
+            "unit": 6
+        }
+    },
+    {
+        "model": "content.component",
+        "pk": 7,
+        "fields": {
+            "name": "Pie Recipes",
+            "content": "Recipes for making comedic pies.",
+            "unit": 7
+        }
+    },
+    {
+        "model": "content.component",
+        "pk": 8,
+        "fields": {
+            "name": "Character Sketching Tools",
+            "content": "Tools for creating character sketches.",
+            "unit": 8
+        }
+    },
+    {
+        "model": "content.component",
+        "pk": 9,
+        "fields": {
+            "name": "Storyboard Templates",
+            "content": "Templates for creating storyboards.",
+            "unit": 9
+        }
+    }
+]
+  
