@@ -28,7 +28,7 @@
 
 
     {
-        "model": "content.course",
+        "model": "studio.course",
         "pk": 1,
         "fields": {
             "name": "Tom's Troublesome Tricks.",
@@ -36,7 +36,7 @@
         }
     },
     {
-        "model": "content.section",
+        "model": "studio.section",
         "pk": 1,
         "fields": {
             "name": "Jerry's Escapades.",
@@ -44,7 +44,7 @@
         }
     },
     {
-        "model": "content.subsection",
+        "model": "studio.subsection",
         "pk": 1,
         "fields": {
             "name": "Cheese Quests.",
@@ -52,7 +52,7 @@
         }
     },
     {
-        "model": "content.unit",
+        "model": "studio.unit",
         "pk": 1,
         "fields": {
           "name": "Chasing Cheese",
@@ -60,7 +60,7 @@
         }
     },
     {
-        "model": "content.component",
+        "model": "studio.component",
         "pk": 1,
         "fields": {
           "name": "Mouse Trap",
@@ -73,7 +73,7 @@
 
 
     {
-        "model": "content.course",
+        "model": "studio.course",
         "pk": 2,
         "fields": {
           "name": "Jerry's Comedy School",
@@ -81,7 +81,7 @@
         }
     },
     {
-        "model": "content.section",
+        "model": "studio.section",
         "pk": 2,
         "fields": {
           "name": "Slapstick Humor",
@@ -89,7 +89,7 @@
         }
     },
     {
-        "model": "content.section",
+        "model": "studio.section",
         "pk": 3,
         "fields": {
           "name": "Visual Gags",
@@ -97,7 +97,7 @@
         }
     },
     {
-        "model": "content.subsection",
+        "model": "studio.subsection",
         "pk": 2,
         "fields": {
           "name": "Slips and Falls",
@@ -105,7 +105,7 @@
         }
     },
     {
-        "model": "content.subsection",
+        "model": "studio.subsection",
         "pk": 3,
         "fields": {
           "name": "Pies in the Face",
@@ -113,7 +113,7 @@
         }
     },
     {
-        "model": "content.unit",
+        "model": "studio.unit",
         "pk": 2,
         "fields": {
           "name": "Slapstick Techniques",
@@ -121,7 +121,7 @@
         }
     },
     {
-        "model": "content.unit",
+        "model": "studio.unit",
         "pk": 3,
         "fields": {
           "name": "Timing and Delivery",
@@ -129,7 +129,7 @@
         }
     },
     {
-        "model": "content.unit",
+        "model": "studio.unit",
         "pk": 4,
         "fields": {
           "name": "Character Design",
@@ -137,7 +137,7 @@
         }
     },
     {
-        "model": "content.unit",
+        "model": "studio.unit",
         "pk": 5,
         "fields": {
           "name": "Storyboarding",
@@ -145,7 +145,7 @@
         }
     },
     {
-        "model": "content.component",
+        "model": "studio.component",
         "pk": 2,
         "fields": {
           "name": "Slapstick Props",
@@ -154,7 +154,7 @@
         }
     },
     {
-        "model": "content.component",
+        "model": "studio.component",
         "pk": 3,
         "fields": {
           "name": "Pie Recipes",
@@ -163,7 +163,7 @@
         }
     },
     {
-        "model": "content.component",
+        "model": "studio.component",
         "pk": 4,
         "fields": {
           "name": "Character Sketching Tools",
@@ -172,7 +172,7 @@
         }
     },
     {
-        "model": "content.component",
+        "model": "studio.component",
         "pk": 5,
         "fields": {
           "name": "Storyboard Templates",
@@ -185,7 +185,7 @@
 
 
     {
-        "model": "content.course",
+        "model": "studio.course",
         "pk": 3,
         "fields": {
             "name": "Jerry's Comedy School",
@@ -193,7 +193,7 @@
         }
     },
     {
-        "model": "content.section",
+        "model": "studio.section",
         "pk": 4,
         "fields": {
             "name": "Slapstick Humor",
@@ -201,7 +201,7 @@
         }
     },
     {
-        "model": "content.section",
+        "model": "studio.section",
         "pk": 5,
         "fields": {
             "name": "Visual Gags",
@@ -209,7 +209,7 @@
         }
     },
     {
-        "model": "content.subsection",
+        "model": "studio.subsection",
         "pk": 4,
         "fields": {
             "name": "Slips and Falls",
@@ -217,7 +217,7 @@
         }
     },
     {
-        "model": "content.subsection",
+        "model": "studio.subsection",
         "pk": 5,
         "fields": {
             "name": "Pies in the Face",
@@ -225,7 +225,7 @@
         }
     },
     {
-        "model": "content.unit",
+        "model": "studio.unit",
         "pk": 6,
         "fields": {
             "name": "Slapstick Techniques",
@@ -233,7 +233,7 @@
         }
     },
     {
-        "model": "content.unit",
+        "model": "studio.unit",
         "pk": 7,
         "fields": {
             "name": "Timing and Delivery",
@@ -241,7 +241,7 @@
         }
     },
     {
-        "model": "content.unit",
+        "model": "studio.unit",
         "pk": 8,
         "fields": {
             "name": "Character Design",
@@ -249,7 +249,7 @@
         }
     },
     {
-        "model": "content.unit",
+        "model": "studio.unit",
         "pk": 9,
         "fields": {
             "name": "Storyboarding",
@@ -257,7 +257,7 @@
         }
     },
     {
-        "model": "content.component",
+        "model": "studio.component",
         "pk": 6,
         "fields": {
             "name": "Slapstick Props",
@@ -266,7 +266,7 @@
         }
     },
     {
-        "model": "content.component",
+        "model": "studio.component",
         "pk": 7,
         "fields": {
             "name": "Pie Recipes",
@@ -275,7 +275,7 @@
         }
     },
     {
-        "model": "content.component",
+        "model": "studio.component",
         "pk": 8,
         "fields": {
             "name": "Character Sketching Tools",
@@ -284,7 +284,7 @@
         }
     },
     {
-        "model": "content.component",
+        "model": "studio.component",
         "pk": 9,
         "fields": {
             "name": "Storyboard Templates",

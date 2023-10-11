@@ -5,11 +5,11 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-class Profile(models.Model):
-    @staticmethod
-    def generate_random_otp():
-        return random.randint(100000, 999999)
+def generate_random_otp():
+    return random.randint(100000, 999999)
 
+
+class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     ROLE_TYPES = [
         ("student", "Student"),
