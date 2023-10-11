@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import UserSerializer, EmailAndOtpSerializer
+from .tasks import send_email_task
 
 
 class Register(APIView):
@@ -14,7 +15,7 @@ class Register(APIView):
             user.profile.role = "student"
             user.profile.is_verified = False
             user.profile.save()
-            send_mail(
+            send_email_task.delay(
                 "OTP", str(user.profile.otp), "muhammad.labeeb@gmail.com", [user.email]
             )
             return Response(serializer.data, status=status.HTTP_201_CREATED)
