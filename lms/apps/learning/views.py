@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -13,6 +14,9 @@ class Register(APIView):
             user.profile.role = "student"
             user.profile.is_verified = False
             user.profile.save()
+            send_mail(
+                "OTP", str(user.profile.otp), "muhammad.labeeb@gmail.com", [user.email]
+            )
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
