@@ -3,19 +3,21 @@ from django.core.mail import send_mail
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import UserSerializer, EmailAndOtpSerializer
+from .serializers import UserSerializer, EmailAndOtpSerializer, EnrollStudentSerializer
 from lms.apps.studio.serializers import CourseSerializer, CourseOverviewSerializer
 from lms.apps.studio.models import Course
 from .tasks import send_email_task
 from rest_framework.permissions import IsAuthenticated
-from .permissions import IsUserVerified
+from .permissions import IsUserVerified, IsUserStudent
 
 
 class Register(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
-            user = serializer.save()
+            user = User(**serializer.validated_data)
+            user.set_password(serializer.validated_data["password"])
+            user.save()
             user.profile.role = "student"
             user.profile.is_verified = False
             user.profile.save()
@@ -60,7 +62,7 @@ class CourseDetail(APIView):
 
 
 class AllCourses(APIView):
-    permission_classes = [IsAuthenticated, IsUserVerified]
+    permission_classes = [IsAuthenticated, IsUserVerified, IsUserStudent]
 
     def post(self, request):
         user_id = request.user.id
@@ -84,7 +86,17 @@ class AllCourses(APIView):
 
 
 class CourseEnrollment(APIView):
-    permission_classes = [IsAuthenticated, IsUserVerified]
+    permission_classes = [IsAuthenticated, IsUserVerified, IsUserStudent]
 
     def post(self, request):
-        pass
+        serializer = EnrollStudentSerializer(data=request.data)
+        user = request.user
+        if serializer.is_valid():
+            course_ids = serializer.validated_data.get("course_ids", [])
+            courses = Course.objects.filter(id__in=course_ids)
+            user.profile.courses.add(*courses)
+            return Response(
+                {"message": "Enrollment successful"}, status=status.HTTP_200_OK
+            )
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
