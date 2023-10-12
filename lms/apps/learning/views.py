@@ -4,6 +4,8 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import UserSerializer, EmailAndOtpSerializer
+from lms.apps.studio.serializers import CourseSerializer
+from lms.apps.studio.models import Course
 from .tasks import send_email_task
 
 
@@ -15,9 +17,9 @@ class Register(APIView):
             user.profile.role = "student"
             user.profile.is_verified = False
             user.profile.save()
-            send_email_task.delay(
-                "OTP", str(user.profile.otp), "muhammad.labeeb@gmail.com", [user.email]
-            )
+            # send_email_task.delay(
+            #     "OTP", str(user.profile.otp), "muhammad.labeeb@gmail.com", [user.email]
+            # )
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -41,3 +43,15 @@ class Verify(APIView):
                     status=status.HTTP_400_BAD_REQUEST,
                 )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CourseDetail(APIView):
+    def get(self, request, course_id):
+        try:
+            course = Course.objects.get(pk=course_id)
+            serializer = CourseSerializer(course)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Course.DoesNotExist:
+            return Response(
+                {"message": "Course not found"}, status=status.HTTP_404_NOT_FOUND
+            )

@@ -9,15 +9,24 @@ def generate_random_otp():
     return random.randint(100000, 999999)
 
 
+class Course(models.Model):
+    name = models.CharField(max_length=100)
+    author = models.ForeignKey(User, related_name="courses", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name}"
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     ROLE_TYPES = [
         ("student", "Student"),
         ("author", "Author"),
     ]
-    role = models.CharField(max_length=20, choices=ROLE_TYPES, blank=False)
+    role = models.CharField(max_length=20, choices=ROLE_TYPES)
     otp = models.PositiveIntegerField(default=generate_random_otp)
     is_verified = models.BooleanField(default=True)
+    courses = models.ManyToManyField(Course, related_name="profiles")
 
     def __str__(self):
         return f"{self.user.username}"
@@ -34,17 +43,11 @@ def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 
-class Course(models.Model):
-    name = models.CharField(max_length=100)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.name}"
-
-
 class Section(models.Model):
     name = models.CharField(max_length=100)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(
+        Course, related_name="sections", on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return f"{self.name}"
@@ -52,7 +55,9 @@ class Section(models.Model):
 
 class SubSection(models.Model):
     name = models.CharField(max_length=100)
-    section = models.ForeignKey(Section, on_delete=models.CASCADE)
+    section = models.ForeignKey(
+        Section, related_name="subsections", on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return f"{self.name}"
@@ -60,7 +65,9 @@ class SubSection(models.Model):
 
 class Unit(models.Model):
     name = models.CharField(max_length=100)
-    sub_section = models.ForeignKey(SubSection, on_delete=models.CASCADE)
+    sub_section = models.ForeignKey(
+        SubSection, related_name="units", on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return f"{self.name}"
@@ -69,7 +76,7 @@ class Unit(models.Model):
 class Component(models.Model):
     name = models.CharField(max_length=100)
     content = models.CharField(max_length=10000)
-    unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
+    unit = models.ForeignKey(Unit, related_name="components", on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name}"
