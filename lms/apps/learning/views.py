@@ -1,12 +1,10 @@
 from django.contrib.auth.models import User
-from django.core.mail import send_mail
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import UserSerializer, EmailAndOtpSerializer, EnrollStudentSerializer
 from lms.apps.studio.serializers import CourseSerializer, CourseOverviewSerializer
 from lms.apps.studio.models import Course
-from .tasks import send_email_task
 from rest_framework.permissions import IsAuthenticated
 from .permissions import IsUserVerified, IsUserStudent
 
@@ -15,15 +13,7 @@ class Register(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
-            user = User(**serializer.validated_data)
-            user.set_password(serializer.validated_data["password"])
-            user.save()
-            user.profile.role = "student"
-            user.profile.is_verified = False
-            user.profile.save()
-            # send_email_task.delay(
-            #     "OTP", str(user.profile.otp), "muhammad.labeeb@gmail.com", [user.email]
-            # )
+            user = serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
