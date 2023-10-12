@@ -41,3 +41,13 @@ class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = ["name", "author_name", "sections"]
+
+
+class CourseOverviewSerializer(serializers.ModelSerializer):
+    author_name = serializers.CharField(
+        source="author.username", read_only=True, required=False
+    )
+
+    class Meta:
+        model = Course
+        fields = ["id", "name", "author_name"]

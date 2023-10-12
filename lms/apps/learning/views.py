@@ -4,9 +4,11 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import UserSerializer, EmailAndOtpSerializer
-from lms.apps.studio.serializers import CourseSerializer
+from lms.apps.studio.serializers import CourseSerializer, CourseOverviewSerializer
 from lms.apps.studio.models import Course
 from .tasks import send_email_task
+from rest_framework.permissions import IsAuthenticated
+from .permissions import IsUserVerified
 
 
 class Register(APIView):
@@ -55,3 +57,34 @@ class CourseDetail(APIView):
             return Response(
                 {"message": "Course not found"}, status=status.HTTP_404_NOT_FOUND
             )
+
+
+class AllCourses(APIView):
+    permission_classes = [IsAuthenticated, IsUserVerified]
+
+    def post(self, request):
+        user_id = request.user.id
+        user_courses = request.user.profile.courses.all()
+        all_courses = Course.objects.all()
+        enrolled_courses = user_courses
+        remaining_courses = [
+            course for course in all_courses if course not in user_courses
+        ]
+        enrolled_courses_serializer = CourseOverviewSerializer(
+            enrolled_courses, many=True
+        )
+        remaining_courses_serializer = CourseOverviewSerializer(
+            remaining_courses, many=True
+        )
+        response_data = {
+            "enrolled_courses": enrolled_courses_serializer.data,
+            "other_courses": remaining_courses_serializer.data,
+        }
+        return Response(response_data, status=status.HTTP_200_OK)
+
+
+class CourseEnrollment(APIView):
+    permission_classes = [IsAuthenticated, IsUserVerified]
+
+    def post(self, request):
+        pass
