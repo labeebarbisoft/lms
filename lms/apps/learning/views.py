@@ -12,16 +12,15 @@ from .permissions import IsUserVerified, IsUserStudent
 class Register(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
             user = serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class Verify(APIView):
     def post(self, request):
         serializer = EmailAndOtpSerializer(data=request.data)
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
             email = serializer.data.get("email")
             otp = serializer.data.get("otp")
             user = User.objects.filter(email=email).first()
@@ -36,7 +35,6 @@ class Verify(APIView):
                     {"message": "Invalid email or otp."},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CourseDetail(APIView):
@@ -81,12 +79,10 @@ class CourseEnrollment(APIView):
     def post(self, request):
         serializer = EnrollStudentSerializer(data=request.data)
         user = request.user
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
             course_ids = serializer.validated_data.get("course_ids", [])
             courses = Course.objects.filter(id__in=course_ids)
             user.profile.courses.add(*courses)
             return Response(
                 {"message": "Enrollment successful"}, status=status.HTTP_200_OK
             )
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
