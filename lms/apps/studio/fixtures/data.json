@@ -188,7 +188,7 @@
         "model": "studio.course",
         "pk": 3,
         "fields": {
-            "name": "Jerry's Comedy School",
+            "name": "Comedy Masterclass",
             "author": 3
         }
     },
@@ -196,7 +196,7 @@
         "model": "studio.section",
         "pk": 4,
         "fields": {
-            "name": "Slapstick Humor",
+            "name": "Hilarious Techniques",
             "course": 3
         }
     },
@@ -204,7 +204,7 @@
         "model": "studio.section",
         "pk": 5,
         "fields": {
-            "name": "Visual Gags",
+            "name": "Comic Stunts",
             "course": 3
         }
     },
@@ -212,7 +212,7 @@
         "model": "studio.subsection",
         "pk": 4,
         "fields": {
-            "name": "Slips and Falls",
+            "name": "Gag Tricks",
             "section": 4
         }
     },
@@ -220,7 +220,7 @@
         "model": "studio.subsection",
         "pk": 5,
         "fields": {
-            "name": "Pies in the Face",
+            "name": "Laugh Riot",
             "section": 5
         }
     },
@@ -228,7 +228,7 @@
         "model": "studio.unit",
         "pk": 6,
         "fields": {
-            "name": "Slapstick Techniques",
+            "name": "Funny Moves",
             "sub_section": 4
         }
     },
@@ -236,7 +236,7 @@
         "model": "studio.unit",
         "pk": 7,
         "fields": {
-            "name": "Timing and Delivery",
+            "name": "Comic Timing",
             "sub_section": 4
         }
     },
@@ -244,7 +244,7 @@
         "model": "studio.unit",
         "pk": 8,
         "fields": {
-            "name": "Character Design",
+            "name": "Character Gags",
             "sub_section": 5
         }
     },
@@ -252,7 +252,7 @@
         "model": "studio.unit",
         "pk": 9,
         "fields": {
-            "name": "Storyboarding",
+            "name": "Side-Splitting Stories",
             "sub_section": 5
         }
     },
@@ -260,8 +260,8 @@
         "model": "studio.component",
         "pk": 6,
         "fields": {
-            "name": "Slapstick Props",
-            "content": "Various props used in slapstick comedy.",
+            "name": "Gag Props",
+            "content": "Various comedic props.",
             "unit": 6
         }
     },
@@ -269,8 +269,8 @@
         "model": "studio.component",
         "pk": 7,
         "fields": {
-            "name": "Pie Recipes",
-            "content": "Recipes for making comedic pies.",
+            "name": "Recipe for Laughs",
+            "content": "Recipes for hilarious pranks.",
             "unit": 7
         }
     },
@@ -278,8 +278,8 @@
         "model": "studio.component",
         "pk": 8,
         "fields": {
-            "name": "Character Sketching Tools",
-            "content": "Tools for creating character sketches.",
+            "name": "Character Sketch Tools",
+            "content": "Tools for funny character sketches.",
             "unit": 8
         }
     },
@@ -287,10 +287,11 @@
         "model": "studio.component",
         "pk": 9,
         "fields": {
-            "name": "Storyboard Templates",
-            "content": "Templates for creating storyboards.",
+            "name": "Comic Storyboards",
+            "content": "Templates for creating comedic storyboards.",
             "unit": 9
         }
     }
+    
 ]
   

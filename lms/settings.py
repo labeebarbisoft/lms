@@ -59,10 +59,6 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK": lambda request: True,
-}
-
 ROOT_URLCONF = "lms.urls"
 
 TEMPLATES = [
@@ -152,6 +148,7 @@ REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
     ],
 }
 
