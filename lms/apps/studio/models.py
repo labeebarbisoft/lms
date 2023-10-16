@@ -17,6 +17,29 @@ class Course(models.Model):
         return f"{self.name}"
 
 
+class ProfileManager(models.Manager):
+    def verify_user(self, profile, otp):
+        if profile.otp == otp:
+            profile.is_verified = True
+            profile.save()
+        return profile.is_verified
+
+    def add_courses(self, profile, course_ids):
+        courses = Course.objects.filter(id__in=course_ids)
+        profile.courses.add(*courses)
+
+    def get_enrolled_courses(self, profile):
+        return profile.courses.all()
+
+    def get_available_courses(self, profile):
+        all_courses = Course.objects.all()
+        enrolled_courses = self.get_enrolled_courses(profile)
+        available_courses = [
+            course for course in all_courses if course not in enrolled_courses
+        ]
+        return available_courses
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     ROLE_TYPES = [
@@ -27,6 +50,8 @@ class Profile(models.Model):
     otp = models.PositiveIntegerField(default=generate_random_otp)
     is_verified = models.BooleanField(default=True)
     courses = models.ManyToManyField(Course, related_name="profiles")
+
+    objects = ProfileManager()
 
     def __str__(self):
         return f"{self.user.username}"

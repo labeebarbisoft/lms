@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import UserSerializer, EmailAndOtpSerializer, EnrollStudentSerializer
 from lms.apps.studio.serializers import CourseSerializer, CourseOverviewSerializer
-from lms.apps.studio.models import Course
+from lms.apps.studio.models import Course, Profile
 from rest_framework.permissions import IsAuthenticated
 from .permissions import IsUserVerified, IsUserStudent
 
@@ -24,9 +24,10 @@ class Verify(APIView):
             email = serializer.data.get("email")
             otp = serializer.data.get("otp")
             user = User.objects.filter(email=email).first()
-            if user and user.profile.otp == otp:
-                user.profile.is_verified = True
-                user.profile.save()
+            if (
+                user is not None
+                and Profile.objects.verify_user(user.profile, otp) is True
+            ):
                 return Response(
                     {"message": "Verified successfully."}, status=status.HTTP_200_OK
                 )
@@ -53,22 +54,15 @@ class AllCourses(APIView):
     permission_classes = [IsAuthenticated, IsUserVerified, IsUserStudent]
 
     def post(self, request):
-        user_id = request.user.id
-        user_courses = request.user.profile.courses.all()
-        all_courses = Course.objects.all()
-        enrolled_courses = user_courses
-        remaining_courses = [
-            course for course in all_courses if course not in user_courses
-        ]
         enrolled_courses_serializer = CourseOverviewSerializer(
-            enrolled_courses, many=True
+            Profile.objects.get_enrolled_courses(request.profile), many=True
         )
-        remaining_courses_serializer = CourseOverviewSerializer(
-            remaining_courses, many=True
+        available_courses_serializer = CourseOverviewSerializer(
+            Profile.objects.get_available_courses(request.profile), many=True
         )
         response_data = {
             "enrolled_courses": enrolled_courses_serializer.data,
-            "other_courses": remaining_courses_serializer.data,
+            "available_courses": available_courses_serializer.data,
         }
         return Response(response_data, status=status.HTTP_200_OK)
 
@@ -78,11 +72,22 @@ class CourseEnrollment(APIView):
 
     def post(self, request):
         serializer = EnrollStudentSerializer(data=request.data)
-        user = request.user
         if serializer.is_valid(raise_exception=True):
             course_ids = serializer.validated_data.get("course_ids", [])
-            courses = Course.objects.filter(id__in=course_ids)
-            user.profile.courses.add(*courses)
+            Profile.objects.add_courses(request.profile, course_ids)
             return Response(
                 {"message": "Enrollment successful"}, status=status.HTTP_200_OK
             )
+
+
+class QueryCounteTest(APIView):
+    def get(self, request):
+        # user = request.user
+        # profile = user.profile
+        return Response(
+            {
+                "username": request.user.username,
+                "profile status": request.profile.is_verified,
+            },
+            status=status.HTTP_200_OK,
+        )
