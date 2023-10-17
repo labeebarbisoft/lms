@@ -1,5 +1,6 @@
 from django.utils.functional import SimpleLazyObject
 from .models import Profile
+import logging
 
 
 class ProfileMiddleware:

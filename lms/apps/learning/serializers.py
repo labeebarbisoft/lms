@@ -19,8 +19,8 @@ class UserSerializer(serializers.ModelSerializer):
         user.profile.is_verified = False
         user.profile.save()
         # send_email_task.delay(
-        #         "OTP", str(user.profile.otp), "muhammad.labeeb@gmail.com", [user.email]
-        #     )
+        #     "OTP", str(user.profile.otp), "muhammad.labeeb@gmail.com", [user.email]
+        # )
         return user
 
 
