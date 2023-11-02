@@ -4,11 +4,10 @@ from .tasks import send_email_task
 
 
 class UserSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
-
     class Meta:
         model = User
         fields = ["username", "password", "email", "first_name", "last_name"]
+        extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, validated_data):
         password = validated_data.pop("password")
@@ -18,9 +17,9 @@ class UserSerializer(serializers.ModelSerializer):
         user.profile.role = "student"
         user.profile.is_verified = False
         user.profile.save()
-        # send_email_task.delay(
-        #     "OTP", str(user.profile.otp), "muhammad.labeeb@gmail.com", [user.email]
-        # )
+        send_email_task.delay(
+            "OTP", str(user.profile.otp), "muhammad.labeeb@gmail.com", [user.email]
+        )
         return user
 
 

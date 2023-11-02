@@ -5,6 +5,9 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
+User._meta.get_field("email")._unique = True
+
+
 def generate_random_otp():
     return random.randint(100000, 999999)
 

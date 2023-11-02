@@ -82,12 +82,10 @@ class CourseEnrollment(APIView):
 
 class QueryCounteTest(APIView):
     def get(self, request):
-        # user = request.user
-        # profile = user.profile
         return Response(
             {
                 "username": request.user.username,
-                "profile status": request.profile.is_verified,
+                "profile otp": request.profile.otp,
             },
             status=status.HTTP_200_OK,
         )
