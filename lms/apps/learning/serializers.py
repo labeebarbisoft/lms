@@ -13,13 +13,11 @@ class UserSerializer(serializers.ModelSerializer):
         password = validated_data.pop("password")
         user = User(**validated_data)
         user.set_password(password)
+        user.role = "student"
         user.save()
-        user.profile.role = "student"
-        user.profile.is_verified = False
-        user.profile.save()
-        send_email_task.delay(
-            "OTP", str(user.profile.otp), "muhammad.labeeb@gmail.com", [user.email]
-        )
+        # send_email_task.delay(
+        #     "OTP", str(user.profile.otp), "muhammad.labeeb@gmail.com", [user.email]
+        # )
         return user
 
 

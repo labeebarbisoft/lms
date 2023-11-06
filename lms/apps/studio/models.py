@@ -24,7 +24,7 @@ class ProfileManager(models.Manager):
     def verify_user(self, profile, otp):
         if profile.otp == otp:
             profile.is_verified = True
-            profile.save()
+            profile.save(update_fields=["is_verified"])
         return profile.is_verified
 
     def add_courses(self, profile, course_ids):
@@ -51,7 +51,7 @@ class Profile(models.Model):
     ]
     role = models.CharField(max_length=20, choices=ROLE_TYPES)
     otp = models.PositiveIntegerField(default=generate_random_otp)
-    is_verified = models.BooleanField(default=True)
+    is_verified = models.BooleanField(default=False)
     courses = models.ManyToManyField(Course, related_name="profiles")
 
     objects = ProfileManager()
@@ -62,13 +62,16 @@ class Profile(models.Model):
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
+    role = instance.role if hasattr(instance, "role") else "author"
     if created:
-        Profile.objects.create(user=instance, role="author")
+        Profile.objects.create(user=instance, role=role)
+    else:
+        instance.profile.save()
 
 
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+# @receiver(post_save, sender=User)
+# def save_user_profile(sender, instance, **kwargs):
+# instance.profile.save()
 
 
 class Section(models.Model):
