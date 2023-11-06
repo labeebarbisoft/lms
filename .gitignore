@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+db.sqlite3
+email_config.py
+dump.rdb
+celery_process.txt

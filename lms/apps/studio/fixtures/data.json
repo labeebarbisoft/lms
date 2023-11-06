@@ -1,0 +1,297 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+        "username": "Tom",
+        "is_staff": true
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "username": "Jerry",
+            "is_staff": true
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "username": "Spike",
+            "is_staff": true
+        }
+    },
+
+
+
+
+    {
+        "model": "studio.course",
+        "pk": 1,
+        "fields": {
+            "name": "Tom's Troublesome Tricks.",
+            "author": 2
+        }
+    },
+    {
+        "model": "studio.section",
+        "pk": 1,
+        "fields": {
+            "name": "Jerry's Escapades.",
+            "course": 1
+        }
+    },
+    {
+        "model": "studio.subsection",
+        "pk": 1,
+        "fields": {
+            "name": "Cheese Quests.",
+            "section": 1
+        }
+    },
+    {
+        "model": "studio.unit",
+        "pk": 1,
+        "fields": {
+          "name": "Chasing Cheese",
+          "sub_section": 1
+        }
+    },
+    {
+        "model": "studio.component",
+        "pk": 1,
+        "fields": {
+          "name": "Mouse Trap",
+          "content": "Tom's latest attempt to catch Jerry.",
+          "unit": 1
+        }
+    },
+
+
+
+
+    {
+        "model": "studio.course",
+        "pk": 2,
+        "fields": {
+          "name": "Jerry's Comedy School",
+          "author": 3
+        }
+    },
+    {
+        "model": "studio.section",
+        "pk": 2,
+        "fields": {
+          "name": "Slapstick Humor",
+          "course": 2
+        }
+    },
+    {
+        "model": "studio.section",
+        "pk": 3,
+        "fields": {
+          "name": "Visual Gags",
+          "course": 2
+        }
+    },
+    {
+        "model": "studio.subsection",
+        "pk": 2,
+        "fields": {
+          "name": "Slips and Falls",
+          "section": 2
+        }
+    },
+    {
+        "model": "studio.subsection",
+        "pk": 3,
+        "fields": {
+          "name": "Pies in the Face",
+          "section": 3
+        }
+    },
+    {
+        "model": "studio.unit",
+        "pk": 2,
+        "fields": {
+          "name": "Slapstick Techniques",
+          "sub_section": 2
+        }
+    },
+    {
+        "model": "studio.unit",
+        "pk": 3,
+        "fields": {
+          "name": "Timing and Delivery",
+          "sub_section": 2
+        }
+    },
+    {
+        "model": "studio.unit",
+        "pk": 4,
+        "fields": {
+          "name": "Character Design",
+          "sub_section": 3
+        }
+    },
+    {
+        "model": "studio.unit",
+        "pk": 5,
+        "fields": {
+          "name": "Storyboarding",
+          "sub_section": 3
+        }
+    },
+    {
+        "model": "studio.component",
+        "pk": 2,
+        "fields": {
+          "name": "Slapstick Props",
+          "content": "Various props used in slapstick comedy.",
+          "unit": 2
+        }
+    },
+    {
+        "model": "studio.component",
+        "pk": 3,
+        "fields": {
+          "name": "Pie Recipes",
+          "content": "Recipes for making comedic pies.",
+          "unit": 3
+        }
+    },
+    {
+        "model": "studio.component",
+        "pk": 4,
+        "fields": {
+          "name": "Character Sketching Tools",
+          "content": "Tools for creating character sketches.",
+          "unit": 4
+        }
+    },
+    {
+        "model": "studio.component",
+        "pk": 5,
+        "fields": {
+          "name": "Storyboard Templates",
+          "content": "Templates for creating storyboards.",
+          "unit": 5
+        }
+    }, 
+    
+    
+
+
+    {
+        "model": "studio.course",
+        "pk": 3,
+        "fields": {
+            "name": "Comedy Masterclass",
+            "author": 3
+        }
+    },
+    {
+        "model": "studio.section",
+        "pk": 4,
+        "fields": {
+            "name": "Hilarious Techniques",
+            "course": 3
+        }
+    },
+    {
+        "model": "studio.section",
+        "pk": 5,
+        "fields": {
+            "name": "Comic Stunts",
+            "course": 3
+        }
+    },
+    {
+        "model": "studio.subsection",
+        "pk": 4,
+        "fields": {
+            "name": "Gag Tricks",
+            "section": 4
+        }
+    },
+    {
+        "model": "studio.subsection",
+        "pk": 5,
+        "fields": {
+            "name": "Laugh Riot",
+            "section": 5
+        }
+    },
+    {
+        "model": "studio.unit",
+        "pk": 6,
+        "fields": {
+            "name": "Funny Moves",
+            "sub_section": 4
+        }
+    },
+    {
+        "model": "studio.unit",
+        "pk": 7,
+        "fields": {
+            "name": "Comic Timing",
+            "sub_section": 4
+        }
+    },
+    {
+        "model": "studio.unit",
+        "pk": 8,
+        "fields": {
+            "name": "Character Gags",
+            "sub_section": 5
+        }
+    },
+    {
+        "model": "studio.unit",
+        "pk": 9,
+        "fields": {
+            "name": "Side-Splitting Stories",
+            "sub_section": 5
+        }
+    },
+    {
+        "model": "studio.component",
+        "pk": 6,
+        "fields": {
+            "name": "Gag Props",
+            "content": "Various comedic props.",
+            "unit": 6
+        }
+    },
+    {
+        "model": "studio.component",
+        "pk": 7,
+        "fields": {
+            "name": "Recipe for Laughs",
+            "content": "Recipes for hilarious pranks.",
+            "unit": 7
+        }
+    },
+    {
+        "model": "studio.component",
+        "pk": 8,
+        "fields": {
+            "name": "Character Sketch Tools",
+            "content": "Tools for funny character sketches.",
+            "unit": 8
+        }
+    },
+    {
+        "model": "studio.component",
+        "pk": 9,
+        "fields": {
+            "name": "Comic Storyboards",
+            "content": "Templates for creating comedic storyboards.",
+            "unit": 9
+        }
+    }
+    
+]
+  
